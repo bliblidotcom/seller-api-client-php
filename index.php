@@ -1,5 +1,4 @@
 <?php
-	// include('generate_signature.php');
 	include('BlibliMerchantClient.php');
 
 	function __autoload($classname) {
