@@ -28,7 +28,7 @@
 	$token_request->setTimeoutSecond(4); //your request timeout
 
 	//put Get Token API url here
-	$url = "http://xapiapp-01.uata.lokal:8080/v2/oauth/token";
+	$url = "https://api-perf.gdn-app.com/v2/oauth/token";
 	//call Get Token API
 	$response = $client->getToken($url, $token_request); 
 	echo $response;
@@ -45,7 +45,7 @@
 	$token_refresh->setTimeoutSecond(4); //your request timeout
 
 	//put Refresh Token API url here
-	$url = "http://xapiapp-01.uata.lokal:8080/v2/oauth/token";
+	$url = "https://api-perf.gdn-app.com/v2/oauth/token";
 	//call Refresh Token API
 	$response = $client->refreshToken($url, $token_refresh);
 	echo $response;
@@ -67,7 +67,7 @@
 	###----------------------------------------------------###
 	###-------------- API TYPE [GET] SAMPLE ---------------###
 	###----------------------------------------------------###
-	$url = "http://xapiapp-01.uata.lokal:8080/v2/proxy/mta/api/businesspartner/v1/order/orderList";
+	$url = "https://api-perf.gdn-app.com/v2/proxy/mta/api/businesspartner/v1/order/orderList";
 
 	//set your request parameter url
     //no need to send: channelId, username, storeId, requestId, businessPartnerCode and merchantCode
@@ -85,7 +85,7 @@
 	###----------------------------------------------------###
 	###-------------- API TYPE [POST] SAMPLE ---------------###
 	###----------------------------------------------------###
-	$url = "http://xapiapp-01.uata.lokal:8080/v2/proxy/mta/api/businesspartner/v1/order/fulfillRegular";
+	$url = "https://api-perf.gdn-app.com/v2/proxy/mta/api/businesspartner/v1/order/fulfillRegular";
 
 	//Body request sample for Fulfill Regular Order API
 	//NOTE! Please see codes under '/sample_request_body' as sample of body object request

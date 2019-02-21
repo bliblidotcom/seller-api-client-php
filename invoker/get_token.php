@@ -5,7 +5,7 @@
 	if($request->getMtaUsername() == '') throw new Exception("Input of [MTA Username] is empty!");
 	if($request->getMtaPassword() == '') throw new Exception("Input of [MTA Password] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
-	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(5);
+	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(15);
 
 	$url .= "?channelId=" . strtolower(str_replace(' ', '-', $request->getPlatformName()));
 	$curl = curl_init();

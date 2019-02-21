@@ -3,8 +3,9 @@
 	if($request->getApiPassword() == '') throw new Exception("Input of [API Password] is empty!");
 	if($request->getRefreshToken() == '') throw new Exception("Input of [Refresh Token] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
-	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(5);
+	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(15);
 
+	$url .= "?channelId=" . strtolower(str_replace(' ', '-', $request->getPlatformName()));
 	$curl = curl_init();
 	$basic_auth = $request->getApiUsername() . ':' . $request->getApiPassword();
 

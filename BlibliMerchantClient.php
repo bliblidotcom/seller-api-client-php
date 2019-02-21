@@ -10,22 +10,22 @@ include('generate_signature.php');
 class BlibliMerchantClient {
 
 	function getToken($url, TokenRequest $request) {
-		$port = 8080;
+		$port = 443;
 		return include("invoker/get_token.php");
 	}
 
 	function refreshToken($url, TokenRefresh $request) {
-		$port = 8080;
+		$port = 443;
 		return include("invoker/refresh_token.php");
 	}
 
 	function invokeGet($url, $params, ApiConfig $request) {
-		$port = 8080;
+		$port = 443;
 		return include("invoker/invoke_get.php");
 	}
 
 	function invokePost($url, $params, $body, ApiConfig $request) {
-		$port = 8080;
+		$port = 443;
 		return include("invoker/invoke_post.php");
 	}
 

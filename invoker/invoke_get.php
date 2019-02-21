@@ -4,7 +4,7 @@
 	if($request->getMtaUsername() == '') throw new Exception("Input of [MTA Username] is empty!");
 	if($request->getBusinessPartnerCode() == '') throw new Exception("Input of [Business Partner Code] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
-	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(5);
+	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(15);
 	$signature = new SignatureGenerator();
 
 	$milliseconds = round(microtime(true) * 1000);
