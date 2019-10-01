@@ -1,5 +1,5 @@
 # seller-api-client-php
-It's an initial project to connect to Blibli Seller API. 
+It's an initial PHP project to connect to Blibli Seller API. 
 Please feel free to relay your comments, suggestions or corrections through pull request.
 
 Intallation step:
