@@ -1,5 +1,5 @@
 <?php
-	include('client/BlibliMerchantClient.php');
+	include('client/BlibliMerchantBasicAuthClient.php');
 
 	function __autoload($classname) {
 		echo "string";
@@ -14,46 +14,7 @@
 	    }
 	}
 	//import this class to use Blibli Merchant API client
-	$client = new BlibliMerchantClient();
-
-	###----------------------------------------------------###
-	###-------------- REQUEST TOKEN SAMPLE ----------------###
-	###----------------------------------------------------###
-	$token_request = new TokenRequest();
-	$token_request->setApiUsername("mta-api-toq-15126"); //your API username
-	$token_request->setApiPassword("12345678"); //your API password
-	$token_request->setMtaUsername("agie.external@mail.com"); //your MTA username
-	$token_request->setMtaPassword("master"); //your MTA password
-	$token_request->setPlatformName("My Company"); //your company name/platform name
-	$token_request->setTimeoutSecond(4); //your request timeout
-
-	//put Get Token API url here
-	$url = "https://api-uata.gdn-app.com/v2/oauth/token";
-	//call Get Token API
-	$response = $client->getToken($url, $token_request); 
-	echo $response;
-	echo "<hr>";
-	
-	$response = json_decode($response);
-
-	###----------------------------------------------------###
-	###-------------- REFRESH TOKEN SAMPLE ----------------###
-	###----------------------------------------------------###
-	$token_refresh = new TokenRefresh();
-	$token_refresh->setApiUsername("mta-api-toq-15126"); //your API username
-	$token_refresh->setApiPassword("12345678"); //your API passowrd
-	$token_refresh->setRefreshToken($response->refresh_token); //put the refresh token here
-	$token_refresh->setPlatformName("My Company"); //your company name/platform name
-	$token_refresh->setTimeoutSecond(4); //your request timeout
-
-	//put Refresh Token API url here
-	$url = "https://api-uata.gdn-app.com/v2/oauth/token";
-	//call Refresh Token API
-	$response = $client->refreshToken($url, $token_refresh);
-	echo $response;
-	echo "<hr>";
-	
-    $response = json_decode($response);
+	$client = new BlibliMerchantBasicAuthClient();
 
 	###----------------------------------------------------###
 	###---------- BASE API CONFIGURATION SAMPLE -----------###
@@ -61,10 +22,12 @@
 	//Base API configuration, for any GET & POST request
 	//set this as global function of your framework, you need to pass this object for every request
 	$config = new ApiConfig(); 
-	$config->setToken($response->access_token); //your API token
-	$config->setSecretKey("tes"); //your API secret key
-	$config->setMtaUsername("agie.external@mail.com"); //your MTA username
-	$config->setBusinessPartnerCode("TOQ-15126"); //your Business Partner Code / Merchant Code
+	$config->setApiClientId("mta-api-clientsdk-cc80f"); // your api client id
+	$config->setApiClientKey("mta-api-ySvFBOwPHTTBhccx89y2QxORSyFEesT55H2ws95fbPs8fsNV9y"); // your api client key
+	$config->setApiSellerKey("495930D13E51161331FB6423B048FB759B39E1573F90673F94558D727C04E917"); // your api seller key
+    $config->setMtaUsername("client.sdk@mailinator.com"); //your MTA username
+//	$config->setSecretKey("secret"); //your API secret key
+	$config->setBusinessPartnerCode("SDC-60001"); //your Business Partner Code / Merchant Code
 	$config->setPlatformName("My Company"); //your company name/platform name
 	$config->setTimeoutSecond(4); //your request timeout
 

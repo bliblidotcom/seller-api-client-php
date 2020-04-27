@@ -13,7 +13,7 @@
       $reqBody = $reqBody != "" ? md5($reqBody) : "";
 
       $apiKey = $reqMethod . "\n" . trim($reqBody) . "\n" . trim($reqContentType) . "\n" . $patternDate . "\n" .$reqUrl;
-
+      
       $signature = hash_hmac('sha256', $apiKey, $reqSecret, true);
       $encodedSignature = base64_encode($signature);
 
