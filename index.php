@@ -67,37 +67,32 @@
 	###----------------------------------------------------###
 	###-------------- API TYPE [GET] SAMPLE ---------------###
 	###----------------------------------------------------###
-	$url = "https://api-uata.gdn-app.com/v2/proxy/mta/api/businesspartner/v1/order/orderList";
+	$url = "https://api-uata.gdn-app.com/v2/proxy/mta/api/businesspartner/v1/order/orderDetail";
 
 	//set your request parameter url
     //no need to send: channelId, username, storeId, requestId, businessPartnerCode and merchantCode
     //they generated automatically by client codes
 	$params = array();
-    //$params['orderNo'] = ''; //set to filter by orderNo
-    //$params['orderItemNo'] = ''; //set to filter by orderItemNo
+    $params["orderNo"] = "25100081147"; //set to filter by orderNo
+    $params["orderItemNo"] = "25000246494"; //set to filter by orderItemNo
 
 	//invoke [Get] Order List API
 	$response = $client->invokeGet($url, $params, $config);
 	echo $response;
 	echo "<hr>";
+	
+	$response = json_decode($response);
 
 	###----------------------------------------------------###
 	###-------------- API TYPE [POST] SAMPLE ---------------###
 	###----------------------------------------------------###
-	$url = "https://api-uata.gdn-app.com/v2/proxy/mta/api/businesspartner/v1/order/fulfillRegular";
+	$url = "https://api-uata.gdn-app.com/v2/proxy/seller/v1/orders/regular/" . 
+        $response->value->packageId . "/fulfill";
 
 	//Body request sample for Fulfill Regular Order API
 	//NOTE! Please see codes under '/sample_request_body' as sample of body object request
 	$body = array(
-		"type" => 1,
-		"orderNo" => "25100026490",
-		"orderItemNo" => "25000179189",
-		"combineShipping" => array(
-			array(
-				"orderNo" => "25100026490",
-				"orderItemNo" => "25000179189"
-			)
-		),
+		"awbNo" => "123456"
 	);
 
 	//set your request parameter url

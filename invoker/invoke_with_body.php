@@ -5,14 +5,21 @@
 	if($request->getBusinessPartnerCode() == '') throw new Exception("Input of [Business Partner Code] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
 	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(15);
+	
 	$signature = new SignatureGenerator();
 
 	$milliseconds = round(microtime(true) * 1000);
 	$uuid = gen_uuid();
-	$urlMeta = explode("/mta", $url);
-	$urlRaw = "/mtaapi" . $urlMeta[1];
+    $urlMeta = explode("/proxy", $url);
+    $urlRaw = $urlMeta[1];
 
-	$signature = $signature->generate($milliseconds, $request->getSignatureKey(), "GET", "", "", $urlRaw);
+    if (strpos($urlRaw, "/mta") !== FALSE) {
+        $urlRaw = str_replace("/mta", "/mtaapi", $urlRaw);
+    } else {
+        $urlRaw = "/api" . $urlRaw;
+    }
+	
+	$signature = $signature->generate($milliseconds, $request->getSignatureKey(), "POST", json_encode($body), "application/json", $urlRaw);
 
 	$header = array(
 	    "Authorization: bearer " . $request->getToken(),
@@ -29,6 +36,7 @@
 	$url .= "?storeId=10001"
 		. "&businessPartnerCode=" . urlencode($request->getBusinessPartnerCode()) 
 		. "&merchantCode=" . urlencode($request->getBusinessPartnerCode())
+        . "&storeCode=" . urlencode($request->getBusinessPartnerCode())
 		. "&username=" . urlencode($request->getMtaUsername())
 		. "&channelId=" . strtolower(str_replace(' ', '-', $request->getPlatformName()))
 		. "&requestId=" . $uuid;
@@ -45,9 +53,10 @@
 	  CURLOPT_RETURNTRANSFER => true,
 	  CURLOPT_ENCODING => "",
 	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_POSTFIELDS => json_encode($body), 
 	  CURLOPT_TIMEOUT => $request->getTimeoutSecond(),
 	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	  CURLOPT_CUSTOMREQUEST => "GET",
+	  CURLOPT_CUSTOMREQUEST => "POST",
 	  CURLOPT_HTTPHEADER => $header
 	));
 
