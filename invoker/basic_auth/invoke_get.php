@@ -2,7 +2,6 @@
 	if($request->getApiClientId() == '') throw new Exception("Input of [API Client Id] is empty!");
 	if($request->getApiClientKey() == '') throw new Exception("Input of [API Client Key] is empty!");
 	if($request->getApiSellerKey() == '') throw new Exception("Input of [API Seller key] is empty!");
-	if($request->getMtaUsername() == '') throw new Exception("Input of [MTA Username] is empty!");
 	if($request->getBusinessPartnerCode() == '') throw new Exception("Input of [Business Partner Code] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
 	if($request->getTimeoutSecond() == '') $request->setTimeoutSecond(15);
@@ -19,7 +18,7 @@
         "Api-Seller-Key: " . $request->getApiSellerKey()
 	);
 
-	if ($request->getSecretKey()) {
+	if ($request->getSignatureKey()) {
         $signature = new SignatureGenerator();
 
         $milliseconds = round(microtime(true) * 1000);
@@ -27,7 +26,7 @@
         $urlMeta = explode("/mta", $url);
         $urlRaw = "/mtaapi" . $urlMeta[1];
 
-        $signature = $signature->generate($milliseconds, $request->getSecretKey(), "GET", "", "", $urlRaw);
+        $signature = $signature->generate($milliseconds, $request->getSignatureKey(), "GET", "", "", $urlRaw);
         array_push($header, "Signature: " . $signature);
         array_push($header, "Signature-Time: $milliseconds");
     }

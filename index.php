@@ -62,7 +62,7 @@
 	//set this as global function of your framework, you need to pass this object for every request
 	$config = new ApiConfig(); 
 	$config->setToken($response->access_token); //your API token
-	$config->setSecretKey("tes"); //your API secret key
+	$config->setSignatureKey("tes"); //your API secret key
 	$config->setMtaUsername("agie.external@mail.com"); //your MTA username
 	$config->setBusinessPartnerCode("TOQ-15126"); //your Business Partner Code / Merchant Code
 	$config->setPlatformName("My Company"); //your company name/platform name
@@ -76,10 +76,9 @@
 	//set your request parameter url
     //no need to send: channelId, username, storeId, requestId, businessPartnerCode and merchantCode
     //they generated automatically by client codes
-	$params = array( 
-		"yourcustomparameter" => "value",
-		"yourcustomparameter2" => "value"
-	);
+	$params = array();
+    //$params['orderNo'] = ''; //set to filter by orderNo
+    //$params['orderItemNo'] = ''; //set to filter by orderItemNo
 
 	//invoke [Get] Order List API
 	$response = $client->invokeGet($url, $params, $config);

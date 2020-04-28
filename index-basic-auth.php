@@ -1,5 +1,5 @@
 <?php
-	include('client/BlibliMerchantBasicAuthClient.php');
+	include('client/BlibliSellerBasicAuthClient.php');
 
 	function __autoload($classname) {
 		echo "string";
@@ -14,7 +14,7 @@
 	    }
 	}
 	//import this class to use Blibli Merchant API client
-	$client = new BlibliMerchantBasicAuthClient();
+	$client = new BlibliSellerBasicAuthClient();
 
 	###----------------------------------------------------###
 	###---------- BASE API CONFIGURATION SAMPLE -----------###
@@ -22,11 +22,10 @@
 	//Base API configuration, for any GET & POST request
 	//set this as global function of your framework, you need to pass this object for every request
 	$config = new ApiConfig(); 
-	$config->setApiClientId("mta-api-clientsdk-cc80f"); // your api client id
-	$config->setApiClientKey("mta-api-ySvFBOwPHTTBhccx89y2QxORSyFEesT55H2ws95fbPs8fsNV9y"); // your api client key
-	$config->setApiSellerKey("495930D13E51161331FB6423B048FB759B39E1573F90673F94558D727C04E917"); // your api seller key
-    $config->setMtaUsername("client.sdk@mailinator.com"); //your MTA username
-//	$config->setSecretKey("secret"); //your API secret key
+	$config->setApiClientid("mta-api-clientsdk-cc80f"); // your api client id
+	$config->setApiClientkey("mta-api-ySvFBOwPHTTBhccx89y2QxORSyFEesT55H2ws95fbPs8fsNV9y"); // your api client key
+	$config->setApiSellerkey("495930D13E51161331FB6423B048FB759B39E1573F90673F94558D727C04E917"); // your api seller key
+	$config->setSignatureKey("secret"); //your API secret key
 	$config->setBusinessPartnerCode("SDC-60001"); //your Business Partner Code / Merchant Code
 	$config->setPlatformName("My Company"); //your company name/platform name
 	$config->setTimeoutSecond(4); //your request timeout
@@ -39,10 +38,9 @@
 	//set your request parameter url
     //no need to send: channelId, username, storeId, requestId, businessPartnerCode and merchantCode
     //they generated automatically by client codes
-	$params = array( 
-		"yourcustomparameter" => "value",
-		"yourcustomparameter2" => "value"
-	);
+    $params = array();
+    //$params['orderNo'] = ''; //set to filter by orderNo
+    //$params['orderItemNo'] = ''; //set to filter by orderItemNo
 
 	//invoke [Get] Order List API
 	$response = $client->invokeGet($url, $params, $config);
@@ -58,12 +56,12 @@
 	//NOTE! Please see codes under '/sample_request_body' as sample of body object request
 	$body = array(
 		"type" => 1,
-		"orderNo" => "25100026490",
-		"orderItemNo" => "25000179189",
+		"orderNo" => "40000198525",
+		"orderItemNo" => "40000262429",
 		"combineShipping" => array(
 			array(
-				"orderNo" => "25100026490",
-				"orderItemNo" => "25000179189"
+				"orderNo" => "40000198522",
+				"orderItemNo" => "40000262426"
 			)
 		),
 	);

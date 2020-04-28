@@ -3,12 +3,12 @@
 class ApiConfig
 {
     var $token;
-    var $secret_key;
+    var $signature_key;
     var $mta_username;
 
-    var $apiClientId;
-    var $apiClientKey;
-    var $apiSellerKey;
+    var $api_client_id;
+    var $api_client_key;
+    var $api_seller_key;
 
     var $business_partner_code;
     var $platform_name;
@@ -19,9 +19,9 @@ class ApiConfig
         $this->token = $val;
     }
 
-    function setSecretKey($val)
+    function setSignatureKey($val)
     {
-        $this->secret_key = $val;
+        $this->signature_key = $val;
     }
 
     function setMtaUsername($val)
@@ -29,19 +29,19 @@ class ApiConfig
         $this->mta_username = $val;
     }
 
-    function setApiClientId($apiClientId)
+    function setApiClientid($api_client_id)
     {
-        $this->apiClientId = $apiClientId;
+        $this->api_client_id = $api_client_id;
     }
 
-    public function setApiClientKey($apiClientKey)
+    public function setApiClientkey($api_client_key)
     {
-        $this->apiClientKey = $apiClientKey;
+        $this->api_client_key = $api_client_key;
     }
 
-    public function setApiSellerKey($apiSellerKey)
+    public function setApiSellerkey($api_seller_key)
     {
-        $this->apiSellerKey = $apiSellerKey;
+        $this->api_seller_key = $api_seller_key;
     }
 
     function setBusinessPartnerCode($val)
@@ -64,9 +64,9 @@ class ApiConfig
         return $this->token;
     }
 
-    function getSecretKey()
+    function getSignatureKey()
     {
-        return $this->secret_key;
+        return $this->signature_key;
     }
 
     function getMtaUsername()
@@ -74,19 +74,19 @@ class ApiConfig
         return $this->mta_username;
     }
 
-    public function getApiClientId()
+    public function getApiClientid()
     {
-        return $this->apiClientId;
+        return $this->api_client_id;
     }
 
-    public function getApiClientKey()
+    public function getApiClientkey()
     {
-        return $this->apiClientKey;
+        return $this->api_client_key;
     }
 
-    public function getApiSellerKey()
+    public function getApiSellerkey()
     {
-        return $this->apiSellerKey;
+        return $this->api_seller_key;
     }
 
     function getBusinessPartnerCode()

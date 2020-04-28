@@ -1,6 +1,6 @@
 <?php
 	if($request->getToken() == '') throw new Exception("Input of [API Token] is empty!");
-	if($request->getSecretKey() == '') throw new Exception("Input of [API Secret Key] is empty!");
+	if($request->getSignatureKey() == '') throw new Exception("Input of [API Secret Key] is empty!");
 	if($request->getMtaUsername() == '') throw new Exception("Input of [MTA Username] is empty!");
 	if($request->getBusinessPartnerCode() == '') throw new Exception("Input of [Business Partner Code] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
@@ -12,7 +12,7 @@
 	$urlMeta = explode("/mta", $url);
 	$urlRaw = "/mtaapi" . $urlMeta[1];
 
-	$signature = $signature->generate($milliseconds, $request->getSecretKey(), "GET", "", "", $urlRaw);
+	$signature = $signature->generate($milliseconds, $request->getSignatureKey(), "GET", "", "", $urlRaw);
 
 	$header = array(
 	    "Authorization: bearer " . $request->getToken(),

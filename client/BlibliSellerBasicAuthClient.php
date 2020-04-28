@@ -7,7 +7,7 @@ function include_files($dir) {
 include_files('request');
 include('generate_signature.php');
 
-class BlibliMerchantBasicAuthClient {
+class BlibliSellerBasicAuthClient {
 
 	function invokeGet($url, $params, ApiConfig $request) {
 		$port = 443;
