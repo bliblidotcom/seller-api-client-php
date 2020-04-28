@@ -12,8 +12,6 @@
 	    "Accept: application/json",
 	    "Content-type: application/json",
 	    "cache-control: no-cache",
-	    "requestid: " . $uuid,
-	    "sessionid: " . $uuid,
         "Api-Seller-Key: " . $request->getApiSellerKey()
 	);
 
