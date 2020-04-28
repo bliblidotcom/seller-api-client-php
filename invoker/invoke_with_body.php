@@ -16,7 +16,7 @@
     if (strpos($urlRaw, "/mta") !== FALSE) {
         $urlRaw = str_replace("/mta", "/mtaapi", $urlRaw);
     } else {
-        $urlRaw = "/api" . $urlRaw;
+        $urlRaw = "/seller-api/api" . $urlRaw;
     }
 	
 	$signature = $signature->generate($milliseconds, $request->getSignatureKey(), "POST", json_encode($body), "application/json", $urlRaw);
