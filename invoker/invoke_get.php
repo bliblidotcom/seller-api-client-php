@@ -27,14 +27,14 @@
 	);
 
 	$url .= "?storeId=10001"
-		. "&businessPartnerCode=" . $request->getBusinessPartnerCode() 
-		. "&merchantCode=" . $request->getBusinessPartnerCode()
-		. "&username=" . $request->getMtaUsername()
+		. "&businessPartnerCode=" . urlencode($request->getBusinessPartnerCode()) 
+		. "&merchantCode=" . urlencode($request->getBusinessPartnerCode())
+		. "&username=" . urlencode($request->getMtaUsername())
 		. "&channelId=" . strtolower(str_replace(' ', '-', $request->getPlatformName()))
 		. "&requestId=" . $uuid;
 	if($params != null ) {
 		foreach($params as $key => $value) {
-			$url .= "&" . $key . "=" . $value;
+			$url .= "&" . $key . "=" . urlencode($value);
 		}
 	}
 

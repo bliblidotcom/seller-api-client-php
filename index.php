@@ -2,10 +2,6 @@
 	include('client/BlibliMerchantClient.php');
 
 	function __autoload($classname) {
-		echo "string";
-		echo "string";
-		echo "string";
-		echo "string";
 	    $filename = $classname . ".php";
 
 	    if(file_exists( $filename ))
@@ -30,11 +26,11 @@
 	//put Get Token API url here
 	$url = "https://api-uata.gdn-app.com/v2/oauth/token";
 	//call Get Token API
-	$response = $client->getToken($url, $token_request); 
+	$response = $client->getToken($url, $token_request);
 	echo $response;
 	echo "<hr>";
-	
-	$response = json_decode($response);
+
+    $response = json_decode($response);
 
 	###----------------------------------------------------###
 	###-------------- REFRESH TOKEN SAMPLE ----------------###
@@ -52,9 +48,9 @@
 	$response = $client->refreshToken($url, $token_refresh);
 	echo $response;
 	echo "<hr>";
-	
-    $response = json_decode($response);
 
+    $response = json_decode($response);
+	
 	###----------------------------------------------------###
 	###---------- BASE API CONFIGURATION SAMPLE -----------###
 	###----------------------------------------------------###
