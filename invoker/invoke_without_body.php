@@ -1,6 +1,6 @@
 <?php
 	if($request->getToken() == '') throw new Exception("Input of [API Token] is empty!");
-	if($request->getSecretKey() == '') throw new Exception("Input of [API Secret Key] is empty!");
+	if($request->getSignatureKey() == '') throw new Exception("Input of [API Secret Key] is empty!");
 	if($request->getMtaUsername() == '') throw new Exception("Input of [MTA Username] is empty!");
 	if($request->getBusinessPartnerCode() == '') throw new Exception("Input of [Business Partner Code] is empty!");
 	if($request->getPlatformName() == '') throw new Exception("Input of [Platform Name] is empty!");
@@ -9,10 +9,16 @@
 
 	$milliseconds = round(microtime(true) * 1000);
 	$uuid = gen_uuid();
-	$urlMeta = explode("/mta", $url);
-	$urlRaw = "/mtaapi" . $urlMeta[1];
+    $urlMeta = explode("/proxy", $url);
+    $urlRaw = $urlMeta[1];
+    
+    if (strpos($urlRaw, "/mta") !== FALSE) {
+        $urlRaw = str_replace("/mta", "/mtaapi", $urlRaw);
+    } else {
+        $urlRaw = "/seller-api/api" . $urlRaw;
+    }
 
-	$signature = $signature->generate($milliseconds, $request->getSecretKey(), "GET", "", "", $urlRaw);
+	$signature = $signature->generate($milliseconds, $request->getSignatureKey(), "GET", "", "", $urlRaw);
 
 	$header = array(
 	    "Authorization: bearer " . $request->getToken(),
@@ -29,6 +35,7 @@
 	$url .= "?storeId=10001"
 		. "&businessPartnerCode=" . urlencode($request->getBusinessPartnerCode()) 
 		. "&merchantCode=" . urlencode($request->getBusinessPartnerCode())
+		. "&storeCode=" . urlencode($request->getBusinessPartnerCode())
 		. "&username=" . urlencode($request->getMtaUsername())
 		. "&channelId=" . strtolower(str_replace(' ', '-', $request->getPlatformName()))
 		. "&requestId=" . $uuid;

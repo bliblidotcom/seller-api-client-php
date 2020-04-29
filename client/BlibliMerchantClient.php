@@ -21,12 +21,12 @@ class BlibliMerchantClient {
 
 	function invokeGet($url, $params, ApiConfig $request) {
 		$port = 443;
-		return include("invoker/invoke_get.php");
+		return include("invoker/invoke_without_body.php");
 	}
 
 	function invokePost($url, $params, $body, ApiConfig $request) {
 		$port = 443;
-		return include("invoker/invoke_post.php");
+		return include("invoker/invoke_with_body.php");
 	}
 
 }
