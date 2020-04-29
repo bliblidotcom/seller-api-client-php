@@ -24,8 +24,6 @@
 
         if (strpos($urlRaw, "/mta") !== FALSE) {
             $urlRaw = str_replace("/mta", "/mtaapi", $urlRaw);
-        } else {
-            $urlRaw = "/seller-api/api" . $urlRaw;
         }
 
         $signature = $signature->generate($milliseconds, $request->getSignatureKey(), "POST", json_encode($body), "application/json", $urlRaw);
@@ -57,7 +55,7 @@
 	  CURLOPT_POSTFIELDS => json_encode($body), 
 	  CURLOPT_TIMEOUT => $request->getTimeoutSecond(),
 	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	  CURLOPT_CUSTOMREQUEST => "POST",
+	  CURLOPT_CUSTOMREQUEST => $http_method,
 	  CURLOPT_HTTPHEADER => $header
 	));
 
