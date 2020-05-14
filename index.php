@@ -81,19 +81,25 @@
 	echo $response;
 	echo "<hr>";
 	
-	$response = json_decode($response);
-
 	###----------------------------------------------------###
 	###-------------- API TYPE [POST] SAMPLE ---------------###
 	###----------------------------------------------------###
-	$url = "https://api-uata.gdn-app.com/v2/proxy/seller/v1/orders/regular/" . 
-        $response->value->packageId . "/fulfill";
+	$url = "https://api-uata.gdn-app.com/v2/proxy/mta/api/businesspartner/v1/order/fulfillRegular";
 
 	//Body request sample for Fulfill Regular Order API
 	//NOTE! Please see codes under '/sample_request_body' as sample of body object request
-	$body = array(
-		"awbNo" => "123456"
-	);
+    $body = array(
+        "type" => 1,
+        "orderNo" => "25100081147",
+        "orderItemNo" => "25000246494",
+        "combineShipping" => array(
+            array(
+                "orderNo" => "25100081147",
+                "orderItemNo" => "25000246494"
+            )
+        ),
+        "awbNo" => "123456"
+    );
 
 	//set your request parameter url
     //no need to send: channelId, username, storeId, requestId, businessPartnerCode and merchantCode
