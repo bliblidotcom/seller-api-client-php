@@ -1,5 +1,7 @@
 <?php
   
+  namespace Blibli\SellerApi\request;
+
   class SignatureGenerator{ 
 
     function generate($milliseconds, $reqSecret, $reqMethod, $reqBody, $reqContentType, $reqUrl){
