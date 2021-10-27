@@ -86,10 +86,12 @@ class SellerInvokeWithoutBody
 
 		curl_close($curl);
 
+		$data = json_decode(utf8_encode($response));
+
 		if ($err) {
 			return $err;
 		} else {
-			return $response;
+			return $data;
 		}
 	}
 }
