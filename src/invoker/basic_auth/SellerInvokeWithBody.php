@@ -18,7 +18,7 @@ class SellerInvokeWithBody
 	 * @param array $params
 	 * @param array $body
 	 * @param ApiConfig $request
-	 * @return void
+	 * @return array|mixed
 	 */
 	public static function generateMethod($port, $http_method, $url, $params, $body, ApiConfig $request)
 	{
