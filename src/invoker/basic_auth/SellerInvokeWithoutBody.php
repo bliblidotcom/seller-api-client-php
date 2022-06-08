@@ -4,7 +4,7 @@ namespace Blibli\SellerApi\invoker\basic_auth;
 
 use Blibli\SellerApi\client\BlibliSellerBasicAuthClient;
 use Blibli\SellerApi\request\ApiConfig;
-use Blibli\SellerApi\request\SignatureGenerator;
+use Blibli\SellerApi\request\GenerateSignature;
 use Exception;
 
 class SellerInvokeWithoutBody
@@ -38,7 +38,7 @@ class SellerInvokeWithoutBody
 		);
 
 		if ($request->getSignatureKey()) {
-			$signature = new SignatureGenerator();
+			$signature = new GenerateSignature();
 
 			$milliseconds = round(microtime(true) * 1000);
 			$uuid = BlibliSellerBasicAuthClient::gen_uuid();

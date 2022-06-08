@@ -2,7 +2,7 @@
   
   namespace Blibli\SellerApi\request;
 
-  class SignatureGenerator{ 
+  class GenerateSignature{ 
 
     function generate($milliseconds, $reqSecret, $reqMethod, $reqBody, $reqContentType, $reqUrl){
       date_default_timezone_set("Asia/Jakarta"); 
