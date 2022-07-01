@@ -1,5 +1,7 @@
 <?php
 
+namespace Blibli\SellerApi\request;
+
 class ApiConfig
 {
     var $token;

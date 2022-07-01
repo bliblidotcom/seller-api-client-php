@@ -1,9 +1,11 @@
 <?php
-class TokenRequest {
+
+namespace Blibli\SellerApi\request;
+
+class TokenRefresh {
    var $api_username;
    var $api_password;
-   var $mta_username;
-   var $mta_password;
+   var $refresh_token;
    var $platform_name;
    var $timeout_second;
    
@@ -15,12 +17,8 @@ class TokenRequest {
       $this->api_password = $val;
    }
 
-   function setMtaUsername($val){
-      $this->mta_username = $val;
-   }
-
-   function setMtaPassword($val){
-      $this->mta_password = $val;
+   function setRefreshToken($val){
+      $this->refresh_token = $val;
    }
 
    function setPlatformName($val){
@@ -37,11 +35,8 @@ class TokenRequest {
    function getApiPassword() {
       return $this->api_password;
    }
-   function getMtaUsername() {
-      return $this->mta_username;
-   }
-   function getMtaPassword() {
-      return $this->mta_password;
+   function getRefreshToken() {
+      return $this->refresh_token;
    }
    function getPlatformName() {
       return $this->platform_name;
